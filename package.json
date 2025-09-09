@@ -1,0 +1,49 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step required for Node.js'",
+    "security-check": "node scripts/security-check.js",
+    "security-audit": "node utils/securityAudit.js",
+    "security-setup": "node scripts/setup-security.js",
+    "security-detail": "node scripts/detailed-security-check.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.7.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.5.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.4",
+    "qrcode": "^1.5.4",
+    "razorpay": "^2.9.6",
+    "resend": "^3.5.0",
+    "speakeasy": "^2.0.0",
+    "stripe": "^16.12.0",
+    "web-push": "^3.6.7",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  }
+}
