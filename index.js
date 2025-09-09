@@ -126,11 +126,30 @@ const authLimiter = rateLimit({
 })
 
 // CORS configuration
+const allowedOrigins = [
+    process.env.FRONTEND_URL || "http://localhost:5173",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://your-frontend-domain.vercel.app", // Replace with your actual frontend domain
+    "https://ecombyn-frontend.vercel.app" // Example frontend domain
+];
+
 app.use(cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            console.log('CORS blocked origin:', origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range']
 }))
 
 // Body parsing middleware
